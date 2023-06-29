@@ -1,0 +1,18 @@
+name: Deploy Google Cloud Function
+on:
+  push:
+    branches:
+      - deploy-github-action
+jobs:
+  Deploy:
+    runs-on: 'ubuntu-latest'
+  
+    steps:
+    - uses: 'actions/checkout@v3'
+
+    - id: 'deploy'
+      uses: 'google-github-actions/deploy-cloud-functions@v1'
+      with:
+        name: ${{ secrets.PROJECT_ID }}
+        project_id: ${{ secrets.PROJECT_ID }}
+        runtime: 'nodejs16'
