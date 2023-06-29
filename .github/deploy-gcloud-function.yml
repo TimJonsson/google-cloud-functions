@@ -1,4 +1,4 @@
-name: Deploy Google Cloud Function
+name: Deploy Google Cloud Function test
 on:
   push:
     branches:
