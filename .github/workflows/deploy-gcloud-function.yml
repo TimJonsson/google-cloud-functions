@@ -31,3 +31,4 @@ jobs:
         project_id: ${{ secrets.PROJECT_ID }}
         runtime: 'nodejs18'
         source_dir: 'processSlackBotTaggedMessage'
+        region: 'europe-west4'
