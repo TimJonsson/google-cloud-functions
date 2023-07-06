@@ -19,10 +19,15 @@ jobs:
         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
         service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
 
-    - id: 'deploy'
-      uses: 'google-github-actions/deploy-cloud-functions@v1'
-      with:
-        name: ${{ secrets.FUNCTION_NAME }}
-        project_id: ${{ secrets.PROJECT_ID }}
-        runtime: 'nodejs18'
-        source_dir: 'google-cloud-functions/processSlackBotTaggedMessage'
+    - run: |
+        pwd
+        ls -la
+        cd google-cloud-functions
+        ls -la
+    # - id: 'deploy'
+    #   uses: 'google-github-actions/deploy-cloud-functions@v1'
+    #   with:
+    #     name: ${{ secrets.FUNCTION_NAME }}
+    #     project_id: ${{ secrets.PROJECT_ID }}
+    #     runtime: 'nodejs18'
+    #     source_dir: 'google-cloud-functions/processSlackBotTaggedMessage'
