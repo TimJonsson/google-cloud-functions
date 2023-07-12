@@ -1,15 +1,9 @@
 const functions = require('@google-cloud/functions-framework');
 
 functions.http('processSlackBotTaggedMessage', (req, res) => {
-  const challenge = req.body.challenge;
+  const payload = req.body;
+  console.log(payload)
+  const challenge = payload.challenge;
 
-  if (challenge) {
-    const response = {
-      challenge: challenge
-    };
-
-    res.status(200).json(response);
-  } else {
-    res.status(400).send('Invalid request');
-  }
+  res.status(200).send(challenge);
 });

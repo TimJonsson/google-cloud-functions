@@ -19,11 +19,6 @@ jobs:
         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
         service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
 
-    # - run: |
-    #     pwd
-    #     ls -la
-    #     cd google-cloud-functions
-    #     ls -la
     - id: 'deploy'
       uses: 'google-github-actions/deploy-cloud-functions@v1'
       with:
@@ -31,3 +26,4 @@ jobs:
         project_id: ${{ secrets.PROJECT_ID }}
         runtime: 'nodejs18'
         source_dir: 'processSlackBotTaggedMessage'
+        ingress_settings: 'ALLOW_ALL'
