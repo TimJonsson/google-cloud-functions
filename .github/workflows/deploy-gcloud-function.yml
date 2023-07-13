@@ -26,8 +26,9 @@ jobs:
 
 
     - name: 'Use gcloud CLI'
-      run: 'gcloud info'
-      run: 'gcloud functions deploy ${{ secrets.FUNCTION_NAME }} --gen2 --runtime=nodejs18 --region=europe-west4 --source=processSlackBotTaggedMessage --trigger-http --allow-unauthenticated --entry-point=processSlackBotTaggedMessage --memory=256MB --timeout=60'
+      run: |
+        'gcloud info'
+        'gcloud functions deploy ${{ secrets.FUNCTION_NAME }} --gen2 --runtime=nodejs18 --region=europe-west4 --source=processSlackBotTaggedMessage --trigger-http --allow-unauthenticated --entry-point=processSlackBotTaggedMessage --memory=256MB --timeout=60'
 
 
     # - id: 'deploy'
