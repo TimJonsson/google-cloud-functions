@@ -23,7 +23,9 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v1'
 
     - run: |
+        echo "First ls" 
         ls
+        echo "CD then second ls"
         cd
         ls
     # - name: 'Use gcloud CLI'
