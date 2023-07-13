@@ -18,12 +18,23 @@ jobs:
       with:
         workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
         service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
-
-    - id: 'deploy'
-      uses: 'google-github-actions/deploy-cloud-functions@v1'
+        
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
       with:
-        name: ${{ secrets.FUNCTION_NAME }}
-        project_id: ${{ secrets.PROJECT_ID }}
-        runtime: 'nodejs18'
-        source_dir: 'processSlackBotTaggedMessage'
-        ingress_settings: 'ALLOW_ALL'
+        version: '>= 363.0.0'
+
+
+    - name: 'Use gcloud CLI'
+      run: 'gcloud info'
+      run: 'gcloud functions deploy ${{ secrets.FUNCTION_NAME }} --gen2 --runtime=nodejs18 --region=europe-west4 --source=processSlackBotTaggedMessage --trigger-http --allow-unauthenticated --entry-point=processSlackBotTaggedMessage --memory=256MB --timeout=60'
+
+
+    # - id: 'deploy'
+    #   uses: 'google-github-actions/deploy-cloud-functions@v1'
+    #   with:
+    #     name: ${{ secrets.FUNCTION_NAME }}
+    #     project_id: ${{ secrets.PROJECT_ID }}
+    #     runtime: 'nodejs18'
+    #     source_dir: 'processSlackBotTaggedMessage'
+    #     ingress_settings: 'ALLOW_ALL'
