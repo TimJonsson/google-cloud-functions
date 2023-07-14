@@ -24,6 +24,10 @@ jobs:
       with:
         project_id: ${{ secrets.PROJECT_ID }} 
     
+    - run: |
+        pwd
+        ls
+        
     - name: 'Use gcloud CLI'
       run: |
         'gcloud info'
