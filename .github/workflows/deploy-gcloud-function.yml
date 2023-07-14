@@ -23,22 +23,12 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v1'
       with:
         project_id: ${{ secrets.PROJECT_ID }} 
-    
-    - run: |
-        pwd
-        ls
-        cd ..
-        pwd
-        ls
-        cd ..
-        pwd
-        ls
 
     - name: 'Use gcloud CLI'
       run: |
         cd ..
         gcloud info
-    #     'gcloud functions deploy ${{ secrets.FUNCTION_NAME }} --gen2 --runtime=nodejs18 --region=europe-west4 --source=processSlackBotTaggedMessage --trigger-http --allow-unauthenticated --entry-point=processSlackBotTaggedMessage --memory=256MB --timeout=60'
+        gcloud functions deploy ${{ secrets.FUNCTION_NAME }} --gen2 --runtime=nodejs18 --region=europe-west4 --source=processSlackBotTaggedMessage --trigger-http --allow-unauthenticated --entry-point=processSlackBotTaggedMessage --memory=256MB --timeout=60
 
 
     # - id: 'deploy'
