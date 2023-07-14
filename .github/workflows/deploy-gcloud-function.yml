@@ -13,11 +13,11 @@ jobs:
     steps:
     - uses: 'actions/checkout@v3'
 
-    # - id: 'auth'
-    #   uses: 'google-github-actions/auth@v1'
-    #   with:
-    #     workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
-    #     service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: ${{ secrets.WORKLOAD_IDENTITY_PROVIDER }}
+        service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
         
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
@@ -25,8 +25,7 @@ jobs:
     - name: 'Use gcloud CLI'
       run: |
         cd ..
-        gcloud info
-        gcloud functions deploy ${{ secrets.FUNCTION_NAME }} --gen2 --runtime=nodejs18 --region=europe-west4 --source=google-cloud-functions/processSlackBotTaggedMessage --service-account=${{ secrets.SERVICE_ACCOUNT_EMAIL }} --trigger-http --allow-unauthenticated --entry-point=processSlackBotTaggedMessage --memory=256MB --timeout=60
+        gcloud functions deploy ${{ secrets.FUNCTION_NAME }} --gen2 --runtime=nodejs18 --region=europe-west4 --source=google-cloud-functions/processSlackBotTaggedMessage --trigger-http --allow-unauthenticated --entry-point=processSlackBotTaggedMessage --memory=256MB --timeout=60
 
 
     # -  id: 'deploy'
