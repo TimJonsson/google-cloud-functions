@@ -5,6 +5,7 @@ on:
       - deploy-github-action
 jobs:
   Deploy:
+    runs-on: 'ubuntu-latest'
     permissions:
      contents: 'read'
      id-token: 'write'
@@ -20,13 +21,8 @@ jobs:
         
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
-
-    - run: |
-        echo "First ls" 
-        ls
-        echo "CD then second ls"
-        cd
-        ls
+      with:
+        project_id: ${{ secrets.PROJECT_ID }} 
     
     - name: 'Use gcloud CLI'
       run: |
